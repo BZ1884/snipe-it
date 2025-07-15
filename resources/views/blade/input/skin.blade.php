@@ -7,6 +7,7 @@
 
 @php
     $formats = [
+        'birza-dark' => trans('general.skins.birza_dark'),
         'blue' => trans('general.skins.default_blue'),
         'blue-dark' => trans('general.skins.blue_dark'),
         'green' => trans('general.skins.green'),

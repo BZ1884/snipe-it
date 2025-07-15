@@ -72,8 +72,10 @@ mix
 
 var skins = fs.readdirSync("resources/assets/less/skins");
 
+
 // Convert the skins to CSS
 for (var i in skins) {
+    console.log("Compiling skin:", skins[i]);
     mix.less(
         "resources/assets/less/skins/" + skins[i],
         "css/dist/skins"

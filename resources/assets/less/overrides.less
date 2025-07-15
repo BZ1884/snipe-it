@@ -9,6 +9,7 @@
 .skin-purple-dark
 .skin-blue-dark
 .skin-black-dark
+.skin-birza-dark
 .skin-orange-dark
 .skin-yellow-dark
 .skin-green-dark
@@ -110,10 +111,25 @@ a.accordion-header {
 
 
 .sidebar-toggle {
-  margin-left: -48px;
+  margin-left: -50px;
+  width: 50px;
   z-index: 100;
-  background-color: inherit;
+  background-color: transparent !important;
 }
+
+//ADDED Sidebar toggle override for better experience
+@media screen and (min-width: 912px){
+  .sidebar-toggle {
+  margin-left: -50px;
+  width: 50px;
+  z-index: 100;
+  background-color: transparent !important;
+  border-radius: 0% !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+}
+
 
 .sidebar-toggle-mobile {
   z-index: 100;
@@ -132,6 +148,7 @@ a.accordion-header {
 .skin-purple-dark
 .skin-blue-dark
 .skin-black-dark
+.skin-birza-dark
 .skin-orange-dark
 .skin-yellow-dark
 .skin-green-dark
@@ -326,6 +343,7 @@ a.accordion-header {
 .skin-purple-dark
 .skin-blue-dark
 .skin-black-dark
+.skin-birza-dark
 .skin-orange-dark
 .skin-yellow-dark
 .skin-green-dark
@@ -778,6 +796,8 @@ th.css-history > .th-inner::before
   font-size: 20px;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
+  padding-top: 2px;   //TODO Check if padding works everywhere
+  padding-bottom: 2px;
 }
 
 /**
@@ -786,7 +806,7 @@ Set the font-weight css property as 900 (For Solid), 400 (Regular or Brands), 30
 **/
 th.css-barcode > .th-inner::before
 {
-  content: "\f02a"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+  content: "\f02a"; font-family: "Font Awesome 5 Free"; font-weight: 900; 
 }
 
 th.css-license > .th-inner::before
@@ -810,11 +830,11 @@ th.css-accessory > .th-inner::before
 }
 
 th.css-users > .th-inner::before {
-  content: "\f0c0"; font-family: "Font Awesome 5 Free"; font-size: 15px;
+  content: "\f0c0"; font-family: "Font Awesome 5 Free"; //font-size: 15px; TODO Check if removeing wont be a problem.
 }
 
 th.css-location > .th-inner::before {
-  content: "\f3c5"; font-family: "Font Awesome 5 Free"; font-size: 19px; margin-bottom: 0px;
+  content: "\f3c5"; font-family: "Font Awesome 5 Free"; font-size: 19px; margin-bottom: 0px; padding-top: 2px; padding-bottom: 2px; //TODO Check if padding works everywhere
 }
 
 th.css-component > .th-inner::before
@@ -848,7 +868,7 @@ th.css-house-laptop > .th-inner::before {
 th.css-accessory-alt > .th-inner::before {
   content: "\f11c";
   font-family: "Font Awesome 5 Free";
-  font-size: 19px;
+  font-size: 19px; 
   margin-bottom: 0px;
 }
 
@@ -1214,5 +1234,10 @@ fieldset.bottom-padded {
 caption.tableCaption {
   font-size: 18px;
   padding-left: 8px;
+}
+
+.table > thead:first-child > tr:first-child > th {
+  border-top: 0;
+  background-color: var(--header) !important;
 }
 
