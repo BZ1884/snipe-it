@@ -610,6 +610,8 @@ return [
         'site_default' => 'Site Standaard',
         'default_blue' => 'Standaard Blauw',
         'blue_dark' => 'Blauw (Donkere Modus)',
+        'birza_dark' => 'Birza Donker',
+        'birza' => 'Birza',
         'green' => 'Groen Donker',
         'green_dark' => 'Groen (Donkere Modus)',
         'red' => 'Rood Donker',

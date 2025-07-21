@@ -1,0 +1,203 @@
+/*
+ * Skin: birza light
+ * ----------------
+ */
+@import "../bootstrap-less/mixins.less";
+@import "../bootstrap-less/variables.less";
+@import "../variables.less";
+@import "../mixins.less";
+
+.skin-birza {
+  .main-header {
+    .navbar {
+      .navbar-variant(#f5f5f5; #222);
+      .sidebar-toggle {
+        color: #222;
+        &:hover {
+          background-color: lighten(@birza-green, 10%);
+        }
+      }
+      @media (max-width: @screen-header-collapse) {
+        .dropdown-menu {
+          li {
+            &.divider {
+              background-color: rgba(0, 0, 0, 0.1);
+              color: #222;
+            }
+            a {
+              color: #ffffff;
+              &:hover {
+                background: lighten(@birza-green, 10%);
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+    }
+    li.user-header {
+      background-color: @birza-green;
+    }
+  }
+
+  .content-header {
+    background: transparent;
+  }
+
+  .skin-dark-sidebar(@birza-green);
+}
+
+.skin-birza.layout-top-nav .main-header > .logo {
+  .logo-variant {
+    background-color: none;
+  }
+}
+
+:root {
+  --background: #f5f5f5;
+  --back-main: #ffffff;
+  --back-sub: #eeeeee;
+  --back-sub-alt: rgba(0, 0, 0, 0.06);
+  --button-default: #84bf41;
+  --button-primary: lighten(#84bf41, 5%);
+  --button-hover: darken(#84bf41, 10%);
+  --header: #84bf41;
+  --text-main: #222;
+  --text-sub: #555;
+  --link: #5a8d1f;
+  --visited-link: darken(#5a8d1f, 10%);
+  --hover-link: lighten(#5a8d1f, 20%);
+  --nav-link: #ffffff;
+  --nav-text: #fff;
+  --light-link: #ffffff;
+}
+
+body {
+  color: var(--text-main);
+  background-color: var(--background);
+}
+
+a {
+  color: var(--link);
+  &:hover {
+    color: var(--hover-link);
+  }
+  &:visited {
+    color: var(--visited-link);
+  }
+}
+
+.content-wrapper,
+.modal-content,
+.box-body, .box-footer, .box-header,
+.form-control,
+.panel,
+.panel-default > .panel-heading {
+  background-color: var(--back-main);
+  color: var(--text-main);
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  background-color: var(--back-sub);
+  color: var(--text-main);
+}
+
+.main-header .navbar, .main-header .logo {
+  background-color: var(--header);
+  background: linear-gradient(to bottom, var(--header), var(--header));
+  border-color: var(--header);
+}
+
+.pagination > li > a {
+  background-color: var(--back-sub);
+  color: var(--text-main);
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover {
+  background-color: var(--visited-link);
+  border-color: var(--hover-link);
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-color: var(--button-default);
+  color: var(--light-link);
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.hover {
+  background-color: var(--button-primary);
+  color: var(--text-main);
+}
+
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active > a:hover {
+  background-color: var(--back-main);
+  color: var(--text-main);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: var(--header);
+}
+
+.nav-tabs-custom,
+.nav-tabs-custom > .tab-content,
+.panel,
+.dropdown-menu,
+.table-striped > tbody > tr:nth-of-type(odd),
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: var(--back-sub);
+  color: var(--text-main);
+}
+
+.select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-dropdown {
+  background-color: var(--back-main);
+  color: var(--text-main);
+}
+
+.select2-container--default .select2-results__option[aria-selected=true],
+.select2-container--default .select2-results__option[aria-selected=true]:hover {
+  background-color: var(--back-sub);
+  color: var(--header);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: var(--header);
+  color: var(--back-main);
+}
+
+.help-block {
+  color: var(--text-sub);
+}
+
+label, h1, h2, h3, h4, h5, h6, p, .text-primary {
+  color: var(--text-main);
+}
+
+.table > tbody > tr.warning > td,
+.label-default {
+  background-color: var(--back-sub);
+  color: var(--text-main);
+}
+
+.search-highlight, .search-highlight:hover {
+  background-color: #f7ec8b;
+  color: #000;
+}
+
+.fixed-table-body thead th .th-inner, .skin-birza .sidebar-menu>li.active>a, .skin-birza .sidebar-menu>li:hover>a, .sidebar-toggle:hover {
+  background-color: var(--header)!important;
+}

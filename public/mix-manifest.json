@@ -1,5 +1,5 @@
 {
-    "/js/build/app.js": "/js/build/app.js?id=3bce64918a63ee60ea00e1f86f7ca883",
+    "/js/build/app.js": "/js/build/app.js?id=c8c5d1c50e0069e203cb8b0e916d07bc",
     "/css/dist/skins/skin-birza-dark.css": "/css/dist/skins/skin-birza-dark.css?id=0a3e450a4a1bc4688f2223bfd791ab1c",
     "/css/dist/skins/_all-skins.css": "/css/dist/skins/_all-skins.css?id=40997154997bfd9bf26ffeb333d6d197",
     "/css/build/overrides.css": "/css/build/overrides.css?id=a7321dc7308eb34b095722898a2a2887",
@@ -20,6 +20,7 @@
     "/css/dist/skins/skin-blue-dark.css": "/css/dist/skins/skin-blue-dark.css?id=42bd6cae1dbdd27fa9e6416d4e270294",
     "/css/dist/skins/skin-black.css": "/css/dist/skins/skin-black.css?id=88a77030739220e2236a3f14a159f543",
     "/css/dist/skins/skin-black-dark.css": "/css/dist/skins/skin-black-dark.css?id=a793410865c3e138bab3f0a20ce1f869",
+    "/css/dist/skins/skin-birza.css": "/css/dist/skins/skin-birza.css?id=a66a397df36e220a4683f11b90f6f01c",
     "/css/dist/all.css": "/css/dist/all.css?id=433377e0d3d7b2fc17c257afd1caa3a4",
     "/css/dist/signature-pad.css": "/css/dist/signature-pad.css?id=6a89d3cd901305e66ced1cf5f13147f7",
     "/css/dist/signature-pad.min.css": "/css/dist/signature-pad.min.css?id=6a89d3cd901305e66ced1cf5f13147f7",
@@ -95,6 +96,7 @@
     "/js/dist/bootstrap-table-en-US.min.js": "/js/dist/bootstrap-table-en-US.min.js?id=c0f21fb7e62d6f0a0153f1cdbf26782a",
     "/css/dist/skins/_all-skins.min.css": "/css/dist/skins/_all-skins.min.css?id=40997154997bfd9bf26ffeb333d6d197",
     "/css/dist/skins/skin-birza-dark.min.css": "/css/dist/skins/skin-birza-dark.min.css?id=0a3e450a4a1bc4688f2223bfd791ab1c",
+    "/css/dist/skins/skin-birza.min.css": "/css/dist/skins/skin-birza.min.css?id=a66a397df36e220a4683f11b90f6f01c",
     "/css/dist/skins/skin-black-dark.min.css": "/css/dist/skins/skin-black-dark.min.css?id=a793410865c3e138bab3f0a20ce1f869",
     "/css/dist/skins/skin-black.min.css": "/css/dist/skins/skin-black.min.css?id=88a77030739220e2236a3f14a159f543",
     "/css/dist/skins/skin-blue-dark.min.css": "/css/dist/skins/skin-blue-dark.min.css?id=42bd6cae1dbdd27fa9e6416d4e270294",
@@ -113,5 +115,5 @@
     "/css/dist/bootstrap-table.css": "/css/dist/bootstrap-table.css?id=54d676a6ea8677dd48f6c4b3041292cf",
     "/js/build/vendor.js": "/js/build/vendor.js?id=89dffa552c6e3abe3a2aac6c9c7b466b",
     "/js/dist/bootstrap-table.js": "/js/dist/bootstrap-table.js?id=60097b6b56d80cbc76257d4ecf6f57b4",
-    "/js/dist/all.js": "/js/dist/all.js?id=0720b78911fd40bde4b856cc427e7e65"
+    "/js/dist/all.js": "/js/dist/all.js?id=7fab8c59803e90795942c525b3ce92ea"
 }
