@@ -612,6 +612,8 @@ return [
         'site_default' => 'Site Default',
         'default_blue' => 'Default Blue',
         'blue_dark' => 'Blue (Dark Mode)',
+        'birza_dark' => 'Birza (Dark Mode)',
+        'birza' => 'Birza',
         'green' => 'Green Dark',
         'green_dark' => 'Green (Dark Mode)',
         'red' => 'Red Dark',
