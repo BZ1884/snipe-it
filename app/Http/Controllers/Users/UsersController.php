@@ -126,7 +126,12 @@ class UsersController extends Controller
         // we have to invoke the form request here to handle image uploads
         app(ImageUploadRequest::class)->handleImages($user, 600, 'avatar', 'avatars', 'avatar');
 
-        session()->put(['redirect_option' => $request->get('redirect_option')]);
+        if($request->get('redirect_option') === 'back'){
+            session()->put(['redirect_option' => 'index']);
+        } else {
+            session()->put(['redirect_option' => $request->get('redirect_option')]);
+        }
+
 
         if ($user->save()) {
             if ($request->filled('groups')) {
@@ -432,7 +437,7 @@ class UsersController extends Controller
         app('request')->request->set('permissions', $permissions);
 
 
-        $user_to_clone = User::with('assets', 'assets.model', 'consumables', 'accessories', 'licenses', 'userloc')->withTrashed()->find($user->id);
+        $user_to_clone = User::with('userloc')->withTrashed()->find($user->id);
         // Make sure they can view this particular user
         $this->authorize('view', $user_to_clone);
 
@@ -447,6 +452,8 @@ class UsersController extends Controller
             $user->last_name = '';
             $user->email = substr($user->email, ($pos = strpos($user->email, '@')) !== false ? $pos : 0);
             $user->id = null;
+            $user->username = null;
+            $user->avatar = null;
 
             // Get this user's groups
             $userGroups = $user_to_clone->groups()->pluck('name', 'id');
@@ -462,7 +469,7 @@ class UsersController extends Controller
                 ->with('user', $user)
                 ->with('groups', Group::pluck('name', 'id'))
                 ->with('userGroups', $userGroups)
-                ->with('clone_user', $user_to_clone)
+                ->with('cloned_model', $user_to_clone)
                 ->with('item', $user);
         }
 
