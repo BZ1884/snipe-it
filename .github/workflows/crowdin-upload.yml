@@ -6,6 +6,7 @@ on:
 
 jobs:
   upload-sources-to-crowdin:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

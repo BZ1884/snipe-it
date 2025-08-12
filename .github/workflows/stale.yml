@@ -5,6 +5,7 @@ on:
 
 jobs:
   stale:
+    if: false
     runs-on: ubuntu-latest
     permissions:
       #  contents: write # only for delete-branch option
