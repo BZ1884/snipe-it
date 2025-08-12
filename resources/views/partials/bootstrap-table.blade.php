@@ -368,10 +368,10 @@
 
                 // Add some overrides for any funny urls we have
                 var dest = destination;
-                var polymorphicItemFormatterDest;
-                if (destination=='fieldsets') {
+                var polymorphicItemFormatterDest = '';
+                if (destination == 'fieldsets') {
                     var polymorphicItemFormatterDest = 'fields/';
-                }
+                } 
 
                 return '<nobr><a href="{{ config('app.url') }}/' + polymorphicItemFormatterDest + dest + '/' + value.id + '">' + value.name + '</a></span>';
             }
@@ -633,7 +633,6 @@
         'licenses',
         'locations',
         'maintenances',
-        'maintenances',
         'manufacturers',
         'models',
         'statuslabels',
@@ -776,6 +775,13 @@
     function phoneFormatter(value) {
         if (value) {
             return  '<span style="white-space: nowrap;"><a href="tel:' + value + '" data-tooltip="true" title="{{ trans('general.call') }}"><x-icon type="phone" /> ' + value + '</a></span>';
+        }
+    }
+
+    // Create a linked phone number in the table list
+    function mobileFormatter(value) {
+        if (value) {
+            return  '<span style="white-space: nowrap;"><a href="tel:' + value + '" data-tooltip="true" title="{{ trans('general.call') }}"><x-icon type="mobile" /> ' + value + '</a></span>';
         }
     }
 
