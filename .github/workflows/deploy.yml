@@ -26,7 +26,6 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
-          script_stop: true
           envs: TAG,APP_DIR,REPO_URL,PHP_FPM_SERVICE,APACHE_SERVICE,KEEP_RELEASES
           script: |
             bash /var/www/html/snipeit/deploy/deploy.sh "$TAG"
@@ -47,7 +46,6 @@ jobs:
             username: ${{ secrets.DEPLOY_USER }}
             port: ${{ secrets.DEPLOY_PORT }}
             password: ${{ secrets.DEPLOY_PASSWORD }}  # strong, rotated
-            script_stop: true
             envs: TAG,APP_DIR,REPO_URL,PHP_FPM_SERVICE,APACHE_SERVICE,KEEP_RELEASES
             script: |
               bash /var/www/html/snipeit/deploy/deploy.sh "$TAG"
