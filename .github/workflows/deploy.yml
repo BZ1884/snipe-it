@@ -2,8 +2,7 @@ name: Deploy (tag)
 
 on:
   push:
-    tags:
-      - 'v*'        # e.g. v1.0.0
+    tags: ['v*']
 
 jobs:
   deploy:
@@ -11,14 +10,60 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy over SSH (key)
+      # --- 1) KEY probe: can we log in & see the script? ---
+      - name: SSH probe (key)
+        id: probe_key
         continue-on-error: true
+        uses: appleboy/ssh-action@v1.2.1
+        env:
+          APP_DIR: /var/www/html/snipeit
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          debug: true
+          capture_stdout: true
+          script: |
+            set -x
+            whoami
+            uname -a
+            ls -ld $APP_DIR/deploy/deploy.sh
+            test -x $APP_DIR/deploy/deploy.sh
+            sudo -n true 2>/dev/null || echo "WARN: sudo may prompt (no NOPASSWD)"
+      
+      # --- 2) If key probe failed, try password probe ---
+      - name: SSH probe (password)
+        id: probe_pw
+        if: steps.probe_key.outcome != 'success'
+        continue-on-error: true
+        uses: appleboy/ssh-action@v1.2.1
+        env:
+          APP_DIR: /var/www/html/snipeit
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          debug: true
+          capture_stdout: true
+          script: |
+            set -x
+            whoami
+            uname -a
+            ls -ld $APP_DIR/deploy/deploy.sh
+            test -x $APP_DIR/deploy/deploy.sh
+            sudo -n true 2>/dev/null || echo "WARN: sudo may prompt (no NOPASSWD)"
+
+      # --- 3) Run deploy (key) if key probe worked ---
+      - name: Deploy over SSH (key)
+        if: steps.probe_key.outcome == 'success'
         uses: appleboy/ssh-action@v1.2.1
         env:
           TAG: ${{ github.ref_name }}
           APP_DIR: /var/www/html/snipeit
-          REPO_URL: git@github.com:BZ1884/snipe-it.git
-          PHP_FPM_SERVICE: php8.3-fpm   # adjust if needed
+          REPO_URL: git@github.com:BZ1884/snipe-it.git  # <-- set this
+          PHP_FPM_SERVICE: php8.3-fpm                          # <-- match server
           APACHE_SERVICE: apache2
           KEEP_RELEASES: "5"
         with:
@@ -28,24 +73,26 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           envs: TAG,APP_DIR,REPO_URL,PHP_FPM_SERVICE,APACHE_SERVICE,KEEP_RELEASES
           script: |
-            bash /var/www/html/snipeit/deploy/deploy.sh "$TAG"
+            set -x
+            bash $APP_DIR/deploy/deploy.sh "$TAG"
 
-      # If key step failed, fall back to PASSWORD
+      # --- 4) Fallback deploy (password) if key probe failed but pw probe worked ---
       - name: Deploy over SSH (password fallback)
-        if: steps.ssh_key.outcome == 'failure'
+        if: steps.probe_key.outcome != 'success' && steps.probe_pw.outcome == 'success'
         uses: appleboy/ssh-action@v1.2.1
         env:
           TAG: ${{ github.ref_name }}
           APP_DIR: /var/www/html/snipeit
-          REPO_URL:  git@github.com:BZ1884/snipe-it.git
-          PHP_FPM_SERVICE: php8.3-fpm   # adjust if needed
+          REPO_URL: git@github.com:BZ1884/snipe-it.git
+          PHP_FPM_SERVICE: php8.3-fpm
           APACHE_SERVICE: apache2
           KEEP_RELEASES: "5"
         with:
-            host: ${{ secrets.DEPLOY_HOST }}
-            username: ${{ secrets.DEPLOY_USER }}
-            port: ${{ secrets.DEPLOY_PORT }}
-            password: ${{ secrets.DEPLOY_PASSWORD }}  # strong, rotated
-            envs: TAG,APP_DIR,REPO_URL,PHP_FPM_SERVICE,APACHE_SERVICE,KEEP_RELEASES
-            script: |
-              bash /var/www/html/snipeit/deploy/deploy.sh "$TAG"
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          envs: TAG,APP_DIR,REPO_URL,PHP_FPM_SERVICE,APACHE_SERVICE,KEEP_RELEASES
+          script: |
+            set -x
+            bash $APP_DIR/deploy/deploy.sh "$TAG"
