@@ -22,7 +22,6 @@ permissions:
 
 jobs:
   codacy-security-scan:
-    if: false
     # Ensure schedule job never runs on forked repos. It's only executed for 'grokability/snipe-it'
     permissions:
       contents: read  # for actions/checkout to fetch code
